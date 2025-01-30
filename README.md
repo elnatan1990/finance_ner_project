@@ -10,45 +10,45 @@ finance_ner_project/
 
 ├── data_fetch/
 
-│   ├── fetch_tabular.py
+	│   ├── fetch_tabular.py
 
-│   ├── fetch_news.py
+	│   ├── fetch_news.py
 
 
 ├── data_storage/
 
-│   ├── store_tabular.py
+	│   ├── store_tabular.py
 
-│   ├── store_news.py
+	│   ├── store_news.py
 
 
 ├── ner/
 
-│   ├── ner.py
+	│   ├── ner.py
 
-│   ├── ner_model
+	│   ├── ner_model
 
-│   ├── requirements.txt
+	│   ├── requirements.txt
 
-│   ├── pip_requirements.txt
+	│   ├── pip_requirements.txt
 
-│   ├── README.md
+	│   ├── README.md
 
 
 ├── rag_system/
 
-│   ├── rag_agent.py
+	│   ├── rag_agent.py
 
 
 ├── ui/
 
-│   ├── app.py
+	│   ├── app.py
 
-├── requirements.txt
+	├── requirements.txt
 
-├── pip_requirements.txt
+	├── pip_requirements.txt
 
-└── README.md
+	└── README.md
 
 
 Stage 1: Fetch Data
