@@ -1,0 +1,1603 @@
+C:\Users\elnat\miniconda3\envs\pythonProject\python.exe C:\Users\elnat\py\NER\pythonProject\NER4.py 
+Loading Gretel's synthetic PII finance dataset...
+Total English training examples found: 25948
+Total English test examples found: 2962
+
+Final statistics after filtering:
+Training examples: 4262
+Test examples: 428
+
+Entity distribution in training set:
+name: 7343
+company: 6030
+street_address: 3730
+
+Sample training examples:
+
+Text 1: SUPPLY CHAIN MANAGEMENT AGREEMENT
+
+This Supply Chain Management Agreement (the "Agreement") is entered into as of this 1st day of March, 2021 (the "Effective Date"), by and between Cameron-Mcknight, a company organized and existing under the laws of the state of Delaware, with its head office located at 81685 Lopez Lodge, Apt. 6502, hereinafter referred to as "Cameron-Mcknight", and Jann N. Butte, an individual with a mailing address of 81685 Lopez Lodge, Apt. 6502.
+
+WHEREAS, Cameron-Mcknight de...
+Labels 1:
+- company: 'Cameron-Mcknight'
+- street_address: '81685 Lopez Lodge, Apt. 6502'
+- company: 'Cameron-Mcknight'
+- name: 'Jann N. Butte'
+- street_address: '81685 Lopez Lodge, Apt. 6502'
+- company: 'Cameron-Mcknight'
+- company: 'Cameron-Mcknight'
+- company: 'Cameron-Mcknight'
+- company: 'Cameron-Mcknight'
+- company: 'Cameron-Mcknight'
+- company: 'Cameron-Mcknight'
+- company: 'Cameron-Mcknight'
+
+Text 2: SUPPLY CHAIN RESILIENCE FRAMEWORK
+
+This Supply Chain Resilience Framework (the "Agreement") is entered into as of this 1st day of August, 2021, by and between Romeo R. Druso, residing at 406 Joshua Square, 08055, North Andrewberg ("Client") and LGWI52890450971869 ("Service Provider").
+
+WHEREAS, Client desires to engage Service Provider for the provision of supply chain management services, and Service Provider is willing to provide such services, subject to the terms and conditions set forth her...
+Labels 2:
+- name: 'Romeo R. Druso'
+- street_address: '406 Joshua Square, 08055, North Andrewberg'
+
+Text 3: :20:OOFFF**222/987
+:25:USA
+:20C:USD150000,00
+:50K:/CITY BANK, NEW YORK, NY
+:52A:234567890123
+:53A:MARK HARRIS
+:59:/SWIFTNET INSTITUTIONS, LONDON, UK
+:57A:ABC BANK, TORONTO, CA
+:71A:OUR
+:72:/6672 CHRISTOPHER VIA, APT. 45681, NEW YORK, NY
+:77B:NO
+/86:4801941481369267753,00,00,P
+/13A:054346
+/15A:NEWARK, NJ
+/15B:USD150000,00
+/16R:CRED
+/16S:USD150000,00
+/17A:20210315
+/20C:USD150000,00
+/23G:/52A
+/23H:/53A
+/23N:/59:/57A
+/32A:20210315
+/33B:NEWARK, NJ,USA
+*****
+/57A:ABC BANK, TORONTO, CA
+/59:/SWIFTNET IN...
+Labels 3:
+- name: 'MARK HARRIS'
+- company: 'ABC BANK, TORONTO, CA'
+- company: 'ABC BANK, TORONTO, CA'
+Initializing NER model...
+Some weights of XLMRobertaForTokenClassification were not initialized from the model checkpoint at xlm-roberta-base and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+Using device: cuda
+
+Sample of training data:
+
+Text 1: SUPPLY CHAIN MANAGEMENT AGREEMENT
+
+This Supply Chain Management Agreement (the "Agreement") is entered into as of this 1st day of March, 2021 (the "Effective Date"), by and between Cameron-Mcknight, a company organized and existing under the laws of the state of Delaware, with its head office located at 81685 Lopez Lodge, Apt. 6502, hereinafter referred to as "Cameron-Mcknight", and Jann N. Butte, an individual with a mailing address of 81685 Lopez Lodge, Apt. 6502.
+
+WHEREAS, Cameron-Mcknight desires to engage the services of Vendor for the provision of goods and services in connection with Cameron-Mcknight's supply chain operations; and
+
+WHEREAS, Vendor desires to provide such goods and services to Cameron-Mcknight on the terms and conditions set forth herein.
+
+NOW, THEREFORE, in consideration of the mutual covenants and promises contained herein, the parties hereto agree as follows:
+
+1. APPOINTMENT
+
+Cameron-Mcknight hereby appoints Vendor as a vendor for the provision of goods and services in connection with Cameron-Mcknight's supply chain operations. Vendor shall provide such goods and services in accordance with the terms and conditions set forth herein.
+
+2. TERM
+
+This Agreement shall commence on the Effective Date and shall continue in force for a period of one (1) year, unless earlier terminated in accordance with the provisions hereof.
+
+3. RESPONSIBILITIES OF VENDOR
+
+3.1. Performance. Vendor shall perform its obligations under this Agreement in a professional and workmanlike manner in accordance with industry standards.
+
+3.2. Compliance. Vendor shall comply with all applicable laws, rules, and regulations in connection with its performance under this Agreement.
+
+3.3. Confidentiality. Vendor shall maintain the confidentiality of all confidential information of Cameron-Mcknight and shall not disclose such confidential information to any third party without the prior written consent of Cameron-Mcknight.
+
+4. PERFORMANCE METRICS
+
+Camer
+Labels 1: [(181, 197, 'company'), (305, 333, 'street_address'), (363, 379, 'company'), (386, 399, 'name'), (441, 469, 'street_address'), (481, 497, 'company'), (598, 614, 'company'), (709, 725, 'company'), (915, 931, 'company'), (1026, 1042, 'company'), (1797, 1813, 'company'), (1923, 1939, 'company')]
+
+Text 2: SUPPLY CHAIN RESILIENCE FRAMEWORK
+
+This Supply Chain Resilience Framework (the "Agreement") is entered into as of this 1st day of August, 2021, by and between Romeo R. Druso, residing at 406 Joshua Square, 08055, North Andrewberg ("Client") and LGWI52890450971869 ("Service Provider").
+
+WHEREAS, Client desires to engage Service Provider for the provision of supply chain management services, and Service Provider is willing to provide such services, subject to the terms and conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual covenants contained herein and for other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:
+
+1. Scope of Services. Service Provider agrees to provide supply chain management services to Client, including but not limited to risk diversification, contingency planning, and resilience metrics for maintaining operational continuity.
+
+2. Risk Diversification. Service Provider shall develop and implement a risk diversification strategy for Client's supply chain, which may include diversifying suppliers, transportation routes, and inventory sources.
+
+3. Contingency Planning. Service Provider shall create and maintain a contingency plan for Client's supply chain, which shall address potential disruptions, including natural disasters, political instability, and other unforeseen events.
+
+4. Resilience Metrics. Service Provider shall establish and track resilience metrics for Client's supply chain, which may include lead times, inventory levels, and service level agreements.
+
+5. Performance Standards. Service Provider shall use commercially reasonable efforts to meet the following performance standards:
+
+a. Response Time: Service Provider shall respond to Client inquiries within two (2) business hours.
+
+b. Resolution Time: Service Provider shall resolve Client issues within two (2) business days.
+
+c. Uptime: Service Provider's platform shall be available 99.9% of the time, excluding scheduled maintenance.
+
+6. Term and Termination. This Agreement shall commence on the date first set forth above and shall continue for a term of one
+Labels 2: [(159, 173, 'name'), (187, 229, 'street_address')]
+
+Text 3: :20:OOFFF**222/987
+:25:USA
+:20C:USD150000,00
+:50K:/CITY BANK, NEW YORK, NY
+:52A:234567890123
+:53A:MARK HARRIS
+:59:/SWIFTNET INSTITUTIONS, LONDON, UK
+:57A:ABC BANK, TORONTO, CA
+:71A:OUR
+:72:/6672 CHRISTOPHER VIA, APT. 45681, NEW YORK, NY
+:77B:NO
+/86:4801941481369267753,00,00,P
+/13A:054346
+/15A:NEWARK, NJ
+/15B:USD150000,00
+/16R:CRED
+/16S:USD150000,00
+/17A:20210315
+/20C:USD150000,00
+/23G:/52A
+/23H:/53A
+/23N:/59:/57A
+/32A:20210315
+/33B:NEWARK, NJ,USA
+*****
+/57A:ABC BANK, TORONTO, CA
+/59:/SWIFTNET INSTITUTIONS, LONDON, UK
+/71A:OUR
+/72:/6672 CHRISTOPHER VIA, APT. 45681, NEW YORK, NY
+/86:4801941481369267753,00,00,P
+/13A:054346
+/15A:NEWARK, NJ
+/15B:USD150
+Labels 3: [(98, 109, 'name'), (154, 175, 'company'), (462, 483, 'company')]
+
+Document 1 encoding:
+Original spans: [(181, 197, 'company'), (305, 333, 'street_address'), (363, 379, 'company'), (386, 399, 'name'), (441, 469, 'street_address'), (481, 497, 'company'), (598, 614, 'company'), (709, 725, 'company'), (915, 931, 'company'), (1026, 1042, 'company'), (1797, 1813, 'company'), (1923, 1939, 'company')]
+Token: 'Cameron' (181:188) → company
+Token: '-' (188:189) → company
+Token: 'M' (189:190) → company
+Token: 'ck' (190:192) → company
+Token: 'night' (192:197) → company
+Token: '81' (305:307) → street_address
+Token: '685' (307:310) → street_address
+Token: 'Lopez' (311:316) → street_address
+Token: 'Lodge' (317:322) → street_address
+Token: ',' (322:323) → street_address
+Token: 'Ap' (324:326) → street_address
+Token: 't' (326:327) → street_address
+Token: '.' (327:328) → street_address
+Token: '650' (329:332) → street_address
+Token: '2' (332:333) → street_address
+Token: 'Cam' (363:366) → company
+Token: 'eron' (366:370) → company
+Token: '-' (370:371) → company
+Token: 'M' (371:372) → company
+Token: 'ck' (372:374) → company
+Token: 'night' (374:379) → company
+Token: 'Jan' (386:389) → name
+Token: 'n' (389:390) → name
+Token: 'N' (391:392) → name
+Token: '.' (392:393) → name
+Token: 'But' (394:397) → name
+Token: 'te' (397:399) → name
+Token: '81' (441:443) → street_address
+Token: '685' (443:446) → street_address
+Token: 'Lopez' (447:452) → street_address
+Token: 'Lodge' (453:458) → street_address
+Token: ',' (458:459) → street_address
+Token: 'Ap' (460:462) → street_address
+Token: 't' (462:463) → street_address
+Token: '.' (463:464) → street_address
+Token: '65' (465:467) → street_address
+Token: 'Cameron' (481:488) → company
+Token: '-' (488:489) → company
+Token: 'M' (489:490) → company
+Token: 'ck' (490:492) → company
+Token: 'night' (492:497) → company
+Token: 'Cameron' (598:605) → company
+Token: '-' (605:606) → company
+Token: 'M' (606:607) → company
+Token: 'ck' (607:609) → company
+Token: 'night' (609:614) → company
+Token: 'Cameron' (709:716) → company
+Token: '-' (716:717) → company
+Token: 'M' (717:718) → company
+Token: 'ck' (718:720) → company
+Token: 'night' (720:725) → company
+Token: 'Cameron' (915:922) → company
+Token: '-' (922:923) → company
+Token: 'M' (923:924) → company
+Token: 'ck' (924:926) → company
+Token: 'night' (926:931) → company
+Token: 'Cameron' (1026:1033) → company
+Token: '-' (1033:1034) → company
+Token: 'M' (1034:1035) → company
+Token: 'ck' (1035:1037) → company
+Token: 'night' (1037:1042) → company
+Token: 'Cameron' (1797:1804) → company
+Token: '-' (1804:1805) → company
+Token: 'M' (1805:1806) → company
+Token: 'ck' (1806:1808) → company
+Token: 'night' (1808:1813) → company
+Token: 'Cameron' (1923:1930) → company
+Token: '-' (1930:1931) → company
+Token: 'M' (1931:1932) → company
+Token: 'ck' (1932:1934) → company
+Token: 'night' (1934:1939) → company
+
+Document 2 encoding:
+Original spans: [(159, 173, 'name'), (187, 229, 'street_address')]
+Token: 'Romeo' (159:164) → name
+Token: 'R' (165:166) → name
+Token: '.' (166:167) → name
+Token: 'Dr' (168:170) → name
+Token: 'uso' (170:173) → name
+Token: '' (187:188) → street_address
+Token: '406' (187:190) → street_address
+Token: 'Joshua' (191:197) → street_address
+Token: 'Square' (198:204) → street_address
+Token: ',' (204:205) → street_address
+Token: '08' (206:208) → street_address
+Token: '055' (208:211) → street_address
+Token: ',' (211:212) → street_address
+Token: 'North' (213:218) → street_address
+Token: 'Andrew' (219:225) → street_address
+Token: 'berg' (225:229) → street_address
+
+Document 3 encoding:
+Original spans: [(98, 109, 'name'), (154, 175, 'company'), (462, 483, 'company')]
+Token: 'MARK' (98:102) → name
+Token: 'HAR' (103:106) → name
+Token: 'RIS' (106:109) → name
+Token: 'ABC' (154:157) → company
+Token: 'BANK' (158:162) → company
+Token: ',' (162:163) → company
+Token: '' (164:165) → company
+Token: 'TOR' (164:167) → company
+Token: 'ONTO' (167:171) → company
+Token: ',' (171:172) → company
+Token: 'CA' (173:175) → company
+Token: 'ABC' (462:465) → company
+Token: 'BANK' (466:470) → company
+Token: ',' (470:471) → company
+Token: '' (472:473) → company
+Token: 'TOR' (472:475) → company
+Token: 'ONTO' (475:479) → company
+Token: ',' (479:480) → company
+Token: 'CA' (481:483) → company
+
+Verifying encoded labels:
+
+Tokens and their encoded labels:
+<s>: O
+▁SUP: O
+P: O
+LY: O
+▁CHA: O
+IN: O
+▁MAN: O
+AGE: O
+MENT: O
+▁A: O
+GRE: O
+EMENT: O
+▁This: O
+▁Supp: O
+ly: O
+▁Cha: O
+in: O
+▁Management: O
+▁Agreement: O
+▁(: O
+the: O
+▁": O
+A: O
+gre: O
+ement: O
+"): O
+▁is: O
+▁enter: O
+ed: O
+▁into: O
+▁as: O
+▁of: O
+▁this: O
+▁1: O
+st: O
+▁day: O
+▁of: O
+▁March: O
+,: O
+▁2021: O
+▁(: O
+the: O
+▁": O
+E: O
+ff: O
+ective: O
+▁Date: O
+"),: O
+▁by: O
+▁and: O
+▁between: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+,: O
+▁a: O
+▁company: O
+▁organiz: O
+ed: O
+▁and: O
+▁existing: O
+▁under: O
+▁the: O
+▁laws: O
+▁of: O
+▁the: O
+▁state: O
+▁of: O
+▁Dela: O
+ware: O
+,: O
+▁with: O
+▁its: O
+▁head: O
+▁office: O
+▁located: O
+▁at: O
+▁81: street_address
+685: street_address
+▁Lopez: street_address
+▁Lodge: street_address
+,: street_address
+▁Ap: street_address
+t: street_address
+.: street_address
+▁650: street_address
+2: street_address
+,: O
+▁here: O
+ina: O
+fter: O
+▁refer: O
+red: O
+▁to: O
+▁as: O
+▁": O
+Cam: company
+eron: company
+-: company
+M: company
+ck: company
+night: company
+",: O
+▁and: O
+▁Jan: name
+n: name
+▁N: name
+.: name
+▁But: name
+te: name
+,: O
+▁an: O
+▁individual: O
+▁with: O
+▁a: O
+▁mai: O
+ling: O
+▁address: O
+▁of: O
+▁81: street_address
+685: street_address
+▁Lopez: street_address
+▁Lodge: street_address
+,: street_address
+▁Ap: street_address
+t: street_address
+.: street_address
+▁65: street_address
+02.: O
+▁W: O
+HE: O
+REA: O
+S: O
+,: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+▁desire: O
+s: O
+▁to: O
+▁engage: O
+▁the: O
+▁services: O
+▁of: O
+▁Ven: O
+dor: O
+▁for: O
+▁the: O
+▁provision: O
+▁of: O
+▁good: O
+s: O
+▁and: O
+▁services: O
+▁in: O
+▁connection: O
+▁with: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+': O
+s: O
+▁supply: O
+▁chain: O
+▁operation: O
+s: O
+;: O
+▁and: O
+▁W: O
+HE: O
+REA: O
+S: O
+,: O
+▁Ven: O
+dor: O
+▁desire: O
+s: O
+▁to: O
+▁provide: O
+▁such: O
+▁good: O
+s: O
+▁and: O
+▁services: O
+▁to: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+▁on: O
+▁the: O
+▁terms: O
+▁and: O
+▁conditions: O
+▁set: O
+▁for: O
+th: O
+▁here: O
+in: O
+.: O
+▁: O
+NOW: O
+,: O
+▁THE: O
+RE: O
+FOR: O
+E: O
+,: O
+▁in: O
+▁consideration: O
+▁of: O
+▁the: O
+▁mutual: O
+▁co: O
+venant: O
+s: O
+▁and: O
+▁promise: O
+s: O
+▁contain: O
+ed: O
+▁here: O
+in: O
+,: O
+▁the: O
+▁parties: O
+▁here: O
+to: O
+▁agree: O
+▁as: O
+▁follow: O
+s: O
+:: O
+▁1.: O
+▁APP: O
+O: O
+INT: O
+MENT: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+▁here: O
+by: O
+▁: O
+appoint: O
+s: O
+▁Ven: O
+dor: O
+▁as: O
+▁a: O
+▁vendor: O
+▁for: O
+▁the: O
+▁provision: O
+▁of: O
+▁good: O
+s: O
+▁and: O
+▁services: O
+▁in: O
+▁connection: O
+▁with: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+': O
+s: O
+▁supply: O
+▁chain: O
+▁operation: O
+s: O
+.: O
+▁Ven: O
+dor: O
+▁shall: O
+▁provide: O
+▁such: O
+▁good: O
+s: O
+▁and: O
+▁services: O
+▁in: O
+▁accordance: O
+▁with: O
+▁the: O
+▁terms: O
+▁and: O
+▁conditions: O
+▁set: O
+▁for: O
+th: O
+▁here: O
+in: O
+.: O
+▁2.: O
+▁TERM: O
+▁This: O
+▁Agreement: O
+▁shall: O
+▁commence: O
+▁on: O
+▁the: O
+▁Effective: O
+▁Date: O
+▁and: O
+▁shall: O
+▁continue: O
+▁in: O
+▁force: O
+▁for: O
+▁a: O
+▁period: O
+▁of: O
+▁one: O
+▁(1): O
+▁year: O
+,: O
+▁unless: O
+▁earlier: O
+▁terminat: O
+ed: O
+▁in: O
+▁accordance: O
+▁with: O
+▁the: O
+▁provision: O
+s: O
+▁here: O
+of: O
+.: O
+▁3.: O
+▁RES: O
+PON: O
+SI: O
+B: O
+ILI: O
+TIES: O
+▁OF: O
+▁: O
+VEN: O
+DOR: O
+▁3.1: O
+.: O
+▁Performance: O
+.: O
+▁Ven: O
+dor: O
+▁shall: O
+▁perform: O
+▁its: O
+▁obliga: O
+tions: O
+▁under: O
+▁this: O
+▁Agreement: O
+▁in: O
+▁a: O
+▁professional: O
+▁and: O
+▁work: O
+man: O
+like: O
+▁manner: O
+▁in: O
+▁accordance: O
+▁with: O
+▁industry: O
+▁standard: O
+s: O
+.: O
+▁3.2: O
+.: O
+▁Comp: O
+liance: O
+.: O
+▁Ven: O
+dor: O
+▁shall: O
+▁comp: O
+ly: O
+▁with: O
+▁all: O
+▁applicable: O
+▁laws: O
+,: O
+▁rules: O
+,: O
+▁and: O
+▁regulations: O
+▁in: O
+▁connection: O
+▁with: O
+▁its: O
+▁performance: O
+▁under: O
+▁this: O
+▁Agreement: O
+.: O
+▁3.3: O
+.: O
+▁Confi: O
+den: O
+ti: O
+ality: O
+.: O
+▁Ven: O
+dor: O
+▁shall: O
+▁maintain: O
+▁the: O
+▁confidential: O
+ity: O
+▁of: O
+▁all: O
+▁confidential: O
+▁information: O
+▁of: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+▁and: O
+▁shall: O
+▁not: O
+▁dis: O
+close: O
+▁such: O
+▁confidential: O
+▁information: O
+▁to: O
+▁any: O
+▁third: O
+▁party: O
+▁without: O
+▁the: O
+▁prior: O
+▁written: O
+▁consent: O
+▁of: O
+▁Cameron: company
+-: company
+M: company
+ck: company
+night: company
+.: O
+▁4.: O
+▁PER: O
+FORM: O
+ANCE: O
+▁ME: O
+TRI: O
+CS: O
+▁Cam: O
+er: O
+<pad>: O
+
+Document 1 encoding:
+Original spans: [(310, 331, 'street_address')]
+Token: '30' (311:313) → street_address
+Token: 'Campbell' (314:322) → street_address
+Token: 'Motor' (323:328) → street_address
+Token: 'way' (328:331) → street_address
+
+Document 2 encoding:
+Original spans: [(1996, 2005, 'company')]
+Token: 'Ac' (1996:1998) → company
+Token: 'me' (1998:2000) → company
+Token: 'Corp' (2001:2005) → company
+
+Document 3 encoding:
+Original spans: [(0, 27, 'company'), (79, 106, 'company'), (445, 472, 'company'), (1272, 1299, 'company'), (2076, 2103, 'company'), (2395, 2422, 'company')]
+Token: 'Humanit' (0:7) → company
+Token: 'a' (7:8) → company
+Token: 'rian' (8:12) → company
+Token: 'A' (13:14) → company
+Token: 'id' (14:16) → company
+Token: 'Fund' (17:21) → company
+Token: ',' (21:22) → company
+Token: 'Inc' (23:26) → company
+Token: '.' (26:27) → company
+Token: 'Humanit' (79:86) → company
+Token: 'a' (86:87) → company
+Token: 'rian' (87:91) → company
+Token: 'A' (92:93) → company
+Token: 'id' (93:95) → company
+Token: 'Fund' (96:100) → company
+Token: ',' (100:101) → company
+Token: 'Inc' (102:105) → company
+Token: '.' (105:106) → company
+Token: 'Humanit' (445:452) → company
+Token: 'a' (452:453) → company
+Token: 'rian' (453:457) → company
+Token: 'A' (458:459) → company
+Token: 'id' (459:461) → company
+Token: 'Fund' (462:466) → company
+Token: ',' (466:467) → company
+Token: 'Inc' (468:471) → company
+Token: '.' (471:472) → company
+Token: 'Humanit' (1272:1279) → company
+Token: 'a' (1279:1280) → company
+Token: 'rian' (1280:1284) → company
+Token: 'A' (1285:1286) → company
+Token: 'id' (1286:1288) → company
+Token: 'Fund' (1289:1293) → company
+Token: ',' (1293:1294) → company
+Token: 'Inc' (1295:1298) → company
+Token: '.' (1298:1299) → company
+Token: 'Humanit' (2076:2083) → company
+Token: 'a' (2083:2084) → company
+Token: 'rian' (2084:2088) → company
+Token: 'A' (2089:2090) → company
+Token: 'id' (2090:2092) → company
+Token: 'Fund' (2093:2097) → company
+Token: ',' (2097:2098) → company
+Token: 'Inc' (2099:2102) → company
+Token: '.' (2102:2103) → company
+Token: 'Humanit' (2395:2402) → company
+Token: 'a' (2402:2403) → company
+Token: 'rian' (2403:2407) → company
+Token: 'A' (2408:2409) → company
+Token: 'id' (2409:2411) → company
+Token: 'Fund' (2412:2416) → company
+Token: ',' (2416:2417) → company
+Token: 'Inc' (2418:2421) → company
+Token: '.' (2421:2422) → company
+
+Training started:
+Number of training examples: 4262
+Number of validation examples: 428
+Number of epochs: 5
+Batch size: 16
+Learning rate: 1e-05
+Gradient accumulation steps: 2
+==================================================
+
+
+Training Progress:
+----------------------------------------------------------------------------------------------------
+  8%|▊         | 50/665 [03:06<38:49,  3.79s/it]
+Step: 50/665 (7.5%)
+Time elapsed: 00:03:06
+Training loss: 0.8886
+{'loss': 0.8886, 'grad_norm': 2.583707332611084, 'learning_rate': 7.014925373134329e-06, 'epoch': 0.37}
+ 15%|█▌        | 100/665 [06:16<35:49,  3.80s/it]
+Step: 100/665 (15.0%)
+Time elapsed: 00:06:16
+Training loss: 0.1411
+{'loss': 0.1411, 'grad_norm': 0.9283243417739868, 'learning_rate': 9.498327759197325e-06, 'epoch': 0.75}
+ 20%|██        | 134/665 [08:21<25:49,  2.92s/it]
+  0%|          | 0/27 [00:00<?, ?it/s]
+  7%|▋         | 2/27 [00:00<00:01, 15.05it/s]
+ 15%|█▍        | 4/27 [00:00<00:02,  9.38it/s]
+ 22%|██▏       | 6/27 [00:00<00:02,  8.38it/s]
+ 26%|██▌       | 7/27 [00:00<00:02,  8.07it/s]
+ 30%|██▉       | 8/27 [00:00<00:02,  7.91it/s]
+ 33%|███▎      | 9/27 [00:01<00:02,  7.77it/s]
+ 37%|███▋      | 10/27 [00:01<00:02,  7.71it/s]
+ 41%|████      | 11/27 [00:01<00:02,  7.70it/s]
+ 44%|████▍     | 12/27 [00:01<00:01,  7.65it/s]
+ 48%|████▊     | 13/27 [00:01<00:01,  7.59it/s]
+ 52%|█████▏    | 14/27 [00:01<00:01,  7.48it/s]
+ 56%|█████▌    | 15/27 [00:01<00:01,  7.49it/s]
+ 59%|█████▉    | 16/27 [00:02<00:01,  7.48it/s]
+ 63%|██████▎   | 17/27 [00:02<00:01,  7.41it/s]
+ 67%|██████▋   | 18/27 [00:02<00:01,  7.23it/s]
+ 70%|███████   | 19/27 [00:02<00:01,  7.27it/s]
+ 74%|███████▍  | 20/27 [00:02<00:00,  7.32it/s]
+ 78%|███████▊  | 21/27 [00:02<00:00,  7.32it/s]
+ 81%|████████▏ | 22/27 [00:02<00:00,  7.38it/s]
+ 85%|████████▌ | 23/27 [00:02<00:00,  7.38it/s]
+ 89%|████████▉ | 24/27 [00:03<00:00,  7.38it/s]
+ 93%|█████████▎| 25/27 [00:03<00:00,  7.36it/s]
+ 96%|█████████▋| 26/27 [00:03<00:00,  7.24it/s]
+Debug: Raw predictions shape: (428, 512)
+Debug: Raw labels shape: (428, 512)
+
+Debug: Sample predictions vs actual (first 3 sequences):
+
+Sequence 1:
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 2:
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 3:
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+                                                 
+ 20%|██        | 134/665 [08:27<25:49,  2.92s/it]
+100%|██████████| 27/27 [00:04<00:00,  7.24it/s]
+                                               
+Debug: Detailed metrics per label:
+
+Step: 134/665 (20.2%)
+Time elapsed: 00:08:27
+
+Evaluation Metrics:
+Macro F1: 0.7274
+
+*** New best macro F1: 0.7274 ***
+{'eval_loss': 0.04466419667005539, 'eval_macro_precision': 0.6758625756452713, 'eval_macro_recall': 0.789451346571337, 'eval_macro_f1': 0.7273857619722265, 'eval_runtime': 5.8239, 'eval_samples_per_second': 73.491, 'eval_steps_per_second': 4.636, 'epoch': 1.0}
+ 23%|██▎       | 150/665 [09:32<32:32,  3.79s/it]
+Step: 150/665 (22.6%)
+Time elapsed: 00:09:32
+Training loss: 0.0574
+{'loss': 0.0574, 'grad_norm': 0.8021763563156128, 'learning_rate': 8.662207357859532e-06, 'epoch': 1.12}
+ 30%|███       | 200/665 [12:41<29:14,  3.77s/it]
+Step: 200/665 (30.1%)
+Time elapsed: 00:12:41
+Training loss: 0.0450
+{'loss': 0.045, 'grad_norm': 0.6759350895881653, 'learning_rate': 7.82608695652174e-06, 'epoch': 1.49}
+ 38%|███▊      | 250/665 [15:50<26:09,  3.78s/it]
+Step: 250/665 (37.6%)
+Time elapsed: 00:15:50
+Training loss: 0.0411
+{'loss': 0.0411, 'grad_norm': 0.5264612436294556, 'learning_rate': 6.989966555183947e-06, 'epoch': 1.87}
+ 40%|████      | 268/665 [16:55<19:22,  2.93s/it]
+  0%|          | 0/27 [00:00<?, ?it/s]
+  7%|▋         | 2/27 [00:00<00:01, 15.01it/s]
+ 15%|█▍        | 4/27 [00:00<00:02,  8.68it/s]
+ 22%|██▏       | 6/27 [00:00<00:02,  7.20it/s]
+ 26%|██▌       | 7/27 [00:00<00:02,  7.23it/s]
+ 30%|██▉       | 8/27 [00:01<00:02,  7.27it/s]
+ 33%|███▎      | 9/27 [00:01<00:02,  7.19it/s]
+ 37%|███▋      | 10/27 [00:01<00:02,  6.56it/s]
+ 41%|████      | 11/27 [00:01<00:02,  6.00it/s]
+ 44%|████▍     | 12/27 [00:01<00:02,  6.11it/s]
+ 48%|████▊     | 13/27 [00:01<00:02,  6.40it/s]
+ 52%|█████▏    | 14/27 [00:01<00:01,  6.69it/s]
+ 56%|█████▌    | 15/27 [00:02<00:01,  6.91it/s]
+ 59%|█████▉    | 16/27 [00:02<00:01,  7.07it/s]
+ 63%|██████▎   | 17/27 [00:02<00:01,  7.21it/s]
+ 67%|██████▋   | 18/27 [00:02<00:01,  7.29it/s]
+ 70%|███████   | 19/27 [00:02<00:01,  7.33it/s]
+ 74%|███████▍  | 20/27 [00:02<00:00,  7.37it/s]
+ 78%|███████▊  | 21/27 [00:02<00:00,  7.42it/s]
+ 81%|████████▏ | 22/27 [00:03<00:00,  7.43it/s]
+ 85%|████████▌ | 23/27 [00:03<00:00,  7.47it/s]
+ 89%|████████▉ | 24/27 [00:03<00:00,  7.37it/s]
+ 93%|█████████▎| 25/27 [00:03<00:00,  7.31it/s]
+ 96%|█████████▋| 26/27 [00:03<00:00,  7.31it/s]
+Debug: Raw predictions shape: (428, 512)
+Debug: Raw labels shape: (428, 512)
+
+Debug: Sample predictions vs actual (first 3 sequences):
+
+Sequence 1:
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 2:
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 3:
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+                                                 
+ 40%|████      | 268/665 [17:01<19:22,  2.93s/it]
+100%|██████████| 27/27 [00:05<00:00,  7.31it/s]
+                                               
+Debug: Detailed metrics per label:
+
+Step: 268/665 (40.3%)
+Time elapsed: 00:17:01
+
+Evaluation Metrics:
+Macro F1: 0.7923
+
+*** New best macro F1: 0.7923 ***
+{'eval_loss': 0.034421373158693314, 'eval_macro_precision': 0.7593335245181422, 'eval_macro_recall': 0.8308873529517857, 'eval_macro_f1': 0.7923410108556305, 'eval_runtime': 6.0795, 'eval_samples_per_second': 70.401, 'eval_steps_per_second': 4.441, 'epoch': 2.0}
+ 45%|████▌     | 300/665 [19:08<22:57,  3.77s/it]
+Step: 300/665 (45.1%)
+Time elapsed: 00:19:08
+Training loss: 0.0359
+{'loss': 0.0359, 'grad_norm': 0.3830483853816986, 'learning_rate': 6.153846153846155e-06, 'epoch': 2.24}
+ 53%|█████▎    | 350/665 [22:17<19:50,  3.78s/it]
+Step: 350/665 (52.6%)
+Time elapsed: 00:22:17
+Training loss: 0.0362
+{'loss': 0.0362, 'grad_norm': 0.6733372807502747, 'learning_rate': 5.317725752508361e-06, 'epoch': 2.61}
+ 60%|██████    | 400/665 [25:26<16:40,  3.78s/it]
+Step: 400/665 (60.2%)
+Time elapsed: 00:25:26
+Training loss: 0.0334
+{'loss': 0.0334, 'grad_norm': 0.6032940745353699, 'learning_rate': 4.481605351170569e-06, 'epoch': 2.99}
+ 60%|██████    | 402/665 [25:30<12:47,  2.92s/it]
+  0%|          | 0/27 [00:00<?, ?it/s]
+  7%|▋         | 2/27 [00:00<00:01, 13.24it/s]
+ 15%|█▍        | 4/27 [00:00<00:02,  8.72it/s]
+ 19%|█▊        | 5/27 [00:00<00:02,  8.07it/s]
+ 22%|██▏       | 6/27 [00:00<00:02,  7.63it/s]
+ 26%|██▌       | 7/27 [00:00<00:02,  7.27it/s]
+ 30%|██▉       | 8/27 [00:01<00:02,  7.09it/s]
+ 33%|███▎      | 9/27 [00:01<00:02,  7.14it/s]
+ 37%|███▋      | 10/27 [00:01<00:02,  7.05it/s]
+ 41%|████      | 11/27 [00:01<00:02,  6.98it/s]
+ 44%|████▍     | 12/27 [00:01<00:02,  7.09it/s]
+ 48%|████▊     | 13/27 [00:01<00:01,  7.06it/s]
+ 52%|█████▏    | 14/27 [00:01<00:01,  6.83it/s]
+ 56%|█████▌    | 15/27 [00:02<00:01,  6.85it/s]
+ 59%|█████▉    | 16/27 [00:02<00:01,  7.03it/s]
+ 63%|██████▎   | 17/27 [00:02<00:01,  7.17it/s]
+ 67%|██████▋   | 18/27 [00:02<00:01,  7.27it/s]
+ 70%|███████   | 19/27 [00:02<00:01,  7.35it/s]
+ 74%|███████▍  | 20/27 [00:02<00:00,  7.13it/s]
+ 78%|███████▊  | 21/27 [00:02<00:00,  6.95it/s]
+ 81%|████████▏ | 22/27 [00:03<00:00,  6.89it/s]
+ 85%|████████▌ | 23/27 [00:03<00:00,  6.80it/s]
+ 89%|████████▉ | 24/27 [00:03<00:00,  6.79it/s]
+ 93%|█████████▎| 25/27 [00:03<00:00,  6.89it/s]
+ 96%|█████████▋| 26/27 [00:03<00:00,  7.03it/s]
+Debug: Raw predictions shape: (428, 512)
+Debug: Raw labels shape: (428, 512)
+
+Debug: Sample predictions vs actual (first 3 sequences):
+
+Sequence 1:
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 2:
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 3:
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+
+Debug: Detailed metrics per label:
+
+Step: 402/665 (60.5%)
+Time elapsed: 00:25:36
+
+Evaluation Metrics:
+Macro F1: 0.8103
+
+*** New best macro F1: 0.8103 ***
+{'eval_loss': 0.03283346816897392, 'eval_macro_precision': 0.7773950640776671, 'eval_macro_recall': 0.8479757266576847, 'eval_macro_f1': 0.8103101325957196, 'eval_runtime': 6.4662, 'eval_samples_per_second': 66.191, 'eval_steps_per_second': 4.176, 'epoch': 3.0}
+                                                 
+ 60%|██████    | 402/665 [25:36<12:47,  2.92s/it]
+100%|██████████| 27/27 [00:05<00:00,  7.03it/s]
+ 68%|██████▊   | 450/665 [28:43<13:31,  3.77s/it]
+Step: 450/665 (67.7%)
+Time elapsed: 00:28:43
+Training loss: 0.0304
+{'loss': 0.0304, 'grad_norm': 0.49810168147087097, 'learning_rate': 3.645484949832776e-06, 'epoch': 3.36}
+ 75%|███████▌  | 500/665 [31:52<10:22,  3.77s/it]
+Step: 500/665 (75.2%)
+Time elapsed: 00:31:52
+Training loss: 0.0296
+{'loss': 0.0296, 'grad_norm': 0.5342891812324524, 'learning_rate': 2.8093645484949835e-06, 'epoch': 3.73}
+ 81%|████████  | 536/665 [34:04<06:15,  2.91s/it]
+  0%|          | 0/27 [00:00<?, ?it/s]
+  7%|▋         | 2/27 [00:00<00:01, 14.57it/s]
+ 15%|█▍        | 4/27 [00:00<00:02,  9.27it/s]
+ 22%|██▏       | 6/27 [00:00<00:02,  8.14it/s]
+ 26%|██▌       | 7/27 [00:00<00:02,  7.70it/s]
+ 30%|██▉       | 8/27 [00:00<00:02,  7.48it/s]
+ 33%|███▎      | 9/27 [00:01<00:02,  7.31it/s]
+ 37%|███▋      | 10/27 [00:01<00:02,  7.26it/s]
+ 41%|████      | 11/27 [00:01<00:02,  7.23it/s]
+ 44%|████▍     | 12/27 [00:01<00:02,  6.87it/s]
+ 48%|████▊     | 13/27 [00:01<00:02,  6.97it/s]
+ 52%|█████▏    | 14/27 [00:01<00:01,  6.86it/s]
+ 56%|█████▌    | 15/27 [00:02<00:01,  6.84it/s]
+ 59%|█████▉    | 16/27 [00:02<00:01,  6.83it/s]
+ 63%|██████▎   | 17/27 [00:02<00:01,  6.91it/s]
+ 67%|██████▋   | 18/27 [00:02<00:01,  7.05it/s]
+ 70%|███████   | 19/27 [00:02<00:01,  7.17it/s]
+ 74%|███████▍  | 20/27 [00:02<00:00,  7.26it/s]
+ 78%|███████▊  | 21/27 [00:02<00:00,  7.19it/s]
+ 81%|████████▏ | 22/27 [00:02<00:00,  7.28it/s]
+ 85%|████████▌ | 23/27 [00:03<00:00,  7.31it/s]
+ 89%|████████▉ | 24/27 [00:03<00:00,  7.35it/s]
+ 93%|█████████▎| 25/27 [00:03<00:00,  7.36it/s]
+ 96%|█████████▋| 26/27 [00:03<00:00,  7.36it/s]
+Debug: Raw predictions shape: (428, 512)
+Debug: Raw labels shape: (428, 512)
+
+Debug: Sample predictions vs actual (first 3 sequences):
+
+Sequence 1:
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 2:
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 3:
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+
+Debug: Detailed metrics per label:
+
+Step: 536/665 (80.6%)
+Time elapsed: 00:34:10
+
+Evaluation Metrics:
+Macro F1: 0.8288
+
+*** New best macro F1: 0.8288 ***
+{'eval_loss': 0.03269880637526512, 'eval_macro_precision': 0.798123080691561, 'eval_macro_recall': 0.8652743408814824, 'eval_macro_f1': 0.8288248610926532, 'eval_runtime': 5.9513, 'eval_samples_per_second': 71.918, 'eval_steps_per_second': 4.537, 'epoch': 4.0}
+                                                 
+ 81%|████████  | 536/665 [34:10<06:15,  2.91s/it]
+100%|██████████| 27/27 [00:05<00:00,  7.36it/s]
+ 83%|████████▎ | 550/665 [35:07<07:15,  3.79s/it]
+Step: 550/665 (82.7%)
+Time elapsed: 00:35:07
+Training loss: 0.0302
+{'loss': 0.0302, 'grad_norm': 0.41070857644081116, 'learning_rate': 1.973244147157191e-06, 'epoch': 4.1}
+ 90%|█████████ | 600/665 [38:16<04:04,  3.77s/it]
+Step: 600/665 (90.2%)
+Time elapsed: 00:38:16
+Training loss: 0.0273
+{'loss': 0.0273, 'grad_norm': 0.6418583989143372, 'learning_rate': 1.137123745819398e-06, 'epoch': 4.48}
+ 98%|█████████▊| 650/665 [41:24<00:56,  3.77s/it]
+Step: 650/665 (97.7%)
+Time elapsed: 00:41:24
+Training loss: 0.0286
+{'loss': 0.0286, 'grad_norm': 0.3538336753845215, 'learning_rate': 3.010033444816054e-07, 'epoch': 4.85}
+100%|██████████| 665/665 [42:20<00:00,  3.76s/it]
+  0%|          | 0/27 [00:00<?, ?it/s]
+  7%|▋         | 2/27 [00:00<00:01, 14.31it/s]
+ 15%|█▍        | 4/27 [00:00<00:02,  9.09it/s]
+ 22%|██▏       | 6/27 [00:00<00:02,  8.15it/s]
+ 26%|██▌       | 7/27 [00:00<00:02,  7.95it/s]
+ 30%|██▉       | 8/27 [00:00<00:02,  7.79it/s]
+ 33%|███▎      | 9/27 [00:01<00:02,  7.65it/s]
+ 37%|███▋      | 10/27 [00:01<00:02,  7.58it/s]
+ 41%|████      | 11/27 [00:01<00:02,  7.51it/s]
+ 44%|████▍     | 12/27 [00:01<00:02,  7.47it/s]
+ 48%|████▊     | 13/27 [00:01<00:01,  7.40it/s]
+ 52%|█████▏    | 14/27 [00:01<00:01,  7.42it/s]
+ 56%|█████▌    | 15/27 [00:01<00:01,  7.37it/s]
+ 59%|█████▉    | 16/27 [00:02<00:01,  7.43it/s]
+ 63%|██████▎   | 17/27 [00:02<00:01,  7.42it/s]
+ 67%|██████▋   | 18/27 [00:02<00:01,  7.40it/s]
+ 70%|███████   | 19/27 [00:02<00:01,  7.42it/s]
+ 74%|███████▍  | 20/27 [00:02<00:00,  7.36it/s]
+ 78%|███████▊  | 21/27 [00:02<00:00,  7.28it/s]
+ 81%|████████▏ | 22/27 [00:02<00:00,  7.33it/s]
+ 85%|████████▌ | 23/27 [00:03<00:00,  7.35it/s]
+ 89%|████████▉ | 24/27 [00:03<00:00,  7.36it/s]
+ 93%|█████████▎| 25/27 [00:03<00:00,  7.44it/s]
+ 96%|█████████▋| 26/27 [00:03<00:00,  7.34it/s]
+Debug: Raw predictions shape: (428, 512)
+Debug: Raw labels shape: (428, 512)
+
+Debug: Sample predictions vs actual (first 3 sequences):
+
+Sequence 1:
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: O               Actual: street_address
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 2:
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: company         Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+Predicted: street_address  Actual: O
+
+Sequence 3:
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+Predicted: company         Actual: company
+
+Debug: Detailed metrics per label:
+
+Step: 665/665 (100.0%)
+Time elapsed: 00:42:33
+
+Evaluation Metrics:
+Macro F1: 0.8294
+
+*** New best macro F1: 0.8294 ***
+{'eval_loss': 0.032171547412872314, 'eval_macro_precision': 0.7993433318308735, 'eval_macro_recall': 0.8642641903358889, 'eval_macro_f1': 0.829396988752022, 'eval_runtime': 6.3242, 'eval_samples_per_second': 67.676, 'eval_steps_per_second': 4.269, 'epoch': 4.97}
+                                                 
+100%|██████████| 665/665 [42:33<00:00,  3.76s/it]
+100%|██████████| 27/27 [00:06<00:00,  7.34it/s]
+100%|██████████| 665/665 [42:41<00:00,  3.76s/it]
+Step: 665/665 (100.0%)
+Time elapsed: 00:42:41
+{'train_runtime': 2561.9972, 'train_samples_per_second': 8.318, 'train_steps_per_second': 0.26, 'train_loss': 0.10776972170162918, 'epoch': 4.97}
+100%|██████████| 665/665 [42:42<00:00,  3.85s/it]
+
+Model and configuration saved to ./ner_model
+
+Process finished with exit code 0
