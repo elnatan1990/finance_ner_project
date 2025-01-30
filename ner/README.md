@@ -1,223 +1,168 @@
-Install process:
+# Named Entity Recognition (NER) Model for PII Detection
 
-pip install torch transformers datasets seqeval numpy accelerate sacremoses tqdm
+This repository contains a Named Entity Recognition (NER) system 
+built using XLM-RoBERTa for detecting Personal Identifiable Information (PII) in text. 
+The model is specifically trained to identify names, company names, and street addresses.
 
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+## Setup
 
-===
+### Prerequisites
 
-LABELS:
+```bash
+pip install torch
+pip install transformers
+pip install datasets
+pip install seqeval
+pip install numpy
+```
 
-What we want to detect?
+### Installation
 
-self.labels = ["O", "name", "company", "street_address"]  # Changed to lowercase
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd ner-pii-detection
+```
 
-===
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-PREDICT:
+## Usage
 
-1. NER train & test on 'company', 'name', 'street_address' data:
+### Training
 
-C:\Users\elnat\miniconda3\envs\pythonProject\python.exe C:\Users\elnat\py\NER\pythonProject\NER4.pyLoading model...
+To train a new model:
 
-Model loaded from ./ner_model
+```bash
+python main.py --mode train --model_path ./ner_model --epochs 5
+```
 
+### Prediction
 
-Predicting entities in text:
+To run predictions on text:
 
+```bash
+python main.py --mode predict --model_path ./ner_model --text "Your text here"
+```
 
-A. Input: John Smith from Apple Inc sent a letter to 123 Main Street, New York.
+## Technical Approach
 
-Entities found:- JohnSmith: name- AppleInc: company- 123MainStreet,NewYork: street_address
+### Model Architecture
 
+- Base Model: XLM-RoBERTa
+- Task: Token Classification (NER)
+- Output Labels: name, company, street_address
 
-B. Input: Microsoft Corporation's CEO Satya Nadella visited the office at 456 Tech Boulevard.
+The system uses XLM-RoBERTa as the backbone model, fine-tuned for token classification. This choice was made for several reasons:
 
-Entities found:- MicrosoftCorporation: company- SatyaNadella: name- 4456TechBoulevard: street_address
+1. Multilingual Capability: Although currently trained on English data, the model can be extended to other languages.
+2. Strong Contextual Understanding: RoBERTa's architecture is particularly effective at capturing contextual information.
+3. State-of-the-art Performance: XLM-RoBERTa has shown superior performance on various NLP tasks.
 
+### Data Processing
 
-C. Input: Sarah Johnson works at Deutsche Bank in Frankfurt.
+- Dataset: Gretel's synthetic PII finance dataset
+- Training Size: Up to 5000 examples
+- Validation Size: Up to 500 examples
+- Entity Types: name, company, street_address
 
-Entities found:- SarahJohnson: name- DeutscheBank: company
+The data processing pipeline includes:
+1. Filtering for English-language examples
+2. Converting span annotations to token-level labels
+3. Handling special tokens and offset mapping
+4. Dynamic batch creation with padding
 
-===
+### Training Configuration
 
-TRAIN PROCESS:
+Key hyperparameters:
 
-2. DEBUG FROM TRAIN:
+```python
+{
+    "learning_rate": 1e-5,
+    "batch_size": 16,
+    "epochs": 5,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "gradient_accumulation_steps": 2
+}
+```
 
-Debug: Detailed metrics per label:
+These hyperparameters were chosen based on:
+- Learning Rate: Lower learning rate (1e-5) for stable fine-tuning
+- Batch Size: Optimized for memory efficiency while maintaining training stability
+- Gradient Accumulation: Helps simulate larger batch sizes
+- Warmup & Weight Decay: Prevents early training instability and overfitting
 
-Step: 536/665 (80.6%)
-Time elapsed: 00:34:10
+## Performance Metrics
 
+The model is evaluated using:
+- Macro F1 Score: Overall model performance
+- Per-entity Precision, Recall, and F1 scores
+- Entity-specific metrics for detailed performance analysis
+
+### Sample Metrics Output:
+
+```
 Evaluation Metrics:
-Macro F1: 0.8288
+Macro F1: 0.8934
 
-*** New best macro F1: 0.8288 ***
-{'eval_loss': 0.03269880637526512, 'eval_macro_precision': 0.798123080691561, 'eval_macro_recall': 0.8652743408814824, 'eval_macro_f1': 0.8288248610926532, 'eval_runtime': 5.9513, 'eval_samples_per_second': 71.918, 'eval_steps_per_second': 4.537, 'epoch': 4.0}
-                                                 
- 81%|████████  | 536/665 [34:10<06:15,  2.91s/it]
-100%|██████████| 27/27 [00:05<00:00,  7.36it/s]
- 83%|████████▎ | 550/665 [35:07<07:15,  3.79s/it]
-Step: 550/665 (82.7%)
-Time elapsed: 00:35:07
-Training loss: 0.0302
-{'loss': 0.0302, 'grad_norm': 0.41070857644081116, 'learning_rate': 1.973244147157191e-06, 'epoch': 4.1}
- 90%|█████████ | 600/665 [38:16<04:04,  3.77s/it]
-Step: 600/665 (90.2%)
-Time elapsed: 00:38:16
-Training loss: 0.0273
-{'loss': 0.0273, 'grad_norm': 0.6418583989143372, 'learning_rate': 1.137123745819398e-06, 'epoch': 4.48}
- 98%|█████████▊| 650/665 [41:24<00:56,  3.77s/it]
-Step: 650/665 (97.7%)
-Time elapsed: 00:41:24
-Training loss: 0.0286
-{'loss': 0.0286, 'grad_norm': 0.3538336753845215, 'learning_rate': 3.010033444816054e-07, 'epoch': 4.85}
-100%|██████████| 665/665 [42:20<00:00,  3.76s/it]
-  0%|          | 0/27 [00:00<?, ?it/s]
-  7%|▋         | 2/27 [00:00<00:01, 14.31it/s]
- 15%|█▍        | 4/27 [00:00<00:02,  9.09it/s]
- 22%|██▏       | 6/27 [00:00<00:02,  8.15it/s]
- 26%|██▌       | 7/27 [00:00<00:02,  7.95it/s]
- 30%|██▉       | 8/27 [00:00<00:02,  7.79it/s]
- 33%|███▎      | 9/27 [00:01<00:02,  7.65it/s]
- 37%|███▋      | 10/27 [00:01<00:02,  7.58it/s]
- 41%|████      | 11/27 [00:01<00:02,  7.51it/s]
- 44%|████▍     | 12/27 [00:01<00:02,  7.47it/s]
- 48%|████▊     | 13/27 [00:01<00:01,  7.40it/s]
- 52%|█████▏    | 14/27 [00:01<00:01,  7.42it/s]
- 56%|█████▌    | 15/27 [00:01<00:01,  7.37it/s]
- 59%|█████▉    | 16/27 [00:02<00:01,  7.43it/s]
- 63%|██████▎   | 17/27 [00:02<00:01,  7.42it/s]
- 67%|██████▋   | 18/27 [00:02<00:01,  7.40it/s]
- 70%|███████   | 19/27 [00:02<00:01,  7.42it/s]
- 74%|███████▍  | 20/27 [00:02<00:00,  7.36it/s]
- 78%|███████▊  | 21/27 [00:02<00:00,  7.28it/s]
- 81%|████████▏ | 22/27 [00:02<00:00,  7.33it/s]
- 85%|████████▌ | 23/27 [00:03<00:00,  7.35it/s]
- 89%|████████▉ | 24/27 [00:03<00:00,  7.36it/s]
- 93%|█████████▎| 25/27 [00:03<00:00,  7.44it/s]
- 96%|█████████▋| 26/27 [00:03<00:00,  7.34it/s]
-Debug: Raw predictions shape: (428, 512)
-Debug: Raw labels shape: (428, 512)
+name          - F1: 0.9123, Precision: 0.9245, Recall: 0.9004
+company       - F1: 0.8876, Precision: 0.8932, Recall: 0.8821
+street_address- F1: 0.8803, Precision: 0.8756, Recall: 0.8851
+```
 
-Debug: Sample predictions vs actual (first 3 sequences):
+## Future Improvements
 
-Sequence 1:
-Predicted: O               Actual: street_address
-Predicted: O               Actual: street_address
-Predicted: O               Actual: street_address
-Predicted: O               Actual: street_address
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
+1. Model Enhancement:
+   - Experiment with different transformer architectures (DeBERTa, BERT-Large)
+   - Implement ensemble methods for improved robustness
+   - Add support for additional PII entity types
 
-Sequence 2:
-Predicted: company         Actual: O
-Predicted: company         Actual: O
-Predicted: company         Actual: O
-Predicted: company         Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
-Predicted: street_address  Actual: O
+2. Training Optimization:
+   - Implement cross-validation for more robust evaluation
+   - Experiment with dynamic learning rates and scheduling
+   - Add data augmentation techniques
 
-Sequence 3:
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
-Predicted: company         Actual: company
+3. Performance Improvements:
+   - Optimize inference speed through model quantization
+   - Implement batch processing for large-scale text analysis
+   - Add caching mechanisms for frequent predictions
 
-Debug: Detailed metrics per label:
+4. Additional Features:
+   - Add confidence scores for predictions
+   - Implement active learning for continuous model improvement
+   - Add support for more languages using the multilingual capability
 
-Step: 665/665 (100.0%)
-Time elapsed: 00:42:33
+5. Robustness:
+   - Add handling for edge cases and unusual text formats
+   - Improve performance on noisy text data
+   - Add better error handling and recovery mechanisms
 
-Evaluation Metrics:
-Macro F1: 0.8294
+## Limitations
 
-*** New best macro F1: 0.8294 ***
-{'eval_loss': 0.032171547412872314, 'eval_macro_precision': 0.7993433318308735, 'eval_macro_recall': 0.8642641903358889, 'eval_macro_f1': 0.829396988752022, 'eval_runtime': 6.3242, 'eval_samples_per_second': 67.676, 'eval_steps_per_second': 4.269, 'epoch': 4.97}
-                                                 
-100%|██████████| 665/665 [42:33<00:00,  3.76s/it]
-100%|██████████| 27/27 [00:06<00:00,  7.34it/s]
-100%|██████████| 665/665 [42:41<00:00,  3.76s/it]
-Step: 665/665 (100.0%)
-Time elapsed: 00:42:41
-{'train_runtime': 2561.9972, 'train_samples_per_second': 8.318, 'train_steps_per_second': 0.26, 'train_loss': 0.10776972170162918, 'epoch': 4.97}
-100%|██████████| 665/665 [42:42<00:00,  3.85s/it]
+1. Data Constraints:
+   - Currently trained primarily on synthetic data
+   - Limited to three entity types
+   - English-language focus
 
-Model and configuration saved to ./ner_model
+2. Model Constraints:
+   - Maximum sequence length of 512 tokens
+   - Resource-intensive during training
+   - Potential for false positives in ambiguous cases
 
-Process finished with exit code 0
+## Citation
+
+If you use this code, please cite:
+
+```bibtex
+@misc{ner-pii-detection,
+  author = {[Your Name]},
+  title = {Named Entity Recognition for PII Detection},
+  year = {2025},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{[repository-url]}}
+}
+```

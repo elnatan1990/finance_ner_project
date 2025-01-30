@@ -1,4 +1,57 @@
-C:\Users\elnat\miniconda3\envs\pythonProject\python.exe C:\Users\elnat\py\NER\pythonProject\NER4.py 
+Install process:
+
+pip install torch transformers datasets seqeval numpy accelerate sacremoses tqdm
+
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+===
+
+LABELS:
+
+What we want to detect?
+
+self.labels = ["O", "name", "company", "street_address"]  # Changed to lowercase
+
+===
+
+PREDICT:
+
+1. NER train & test on 'company', 'name', 'street_address' data:
+
+C:\Users\elnat\miniconda3\envs\pythonProject\python.exe C:\Users\elnat\py\NER\pythonProject\NER4.pyLoading model...
+
+Model loaded from ./ner_model
+
+Predicting entities in text:
+
+A. Input: John Smith from Apple Inc sent a letter to 123 Main Street, New York.
+
+Entities found:
+
+JohnSmith: name
+AppleInc: company
+123MainStreet,NewYork: street_address
+
+B. Input: Microsoft Corporation's CEO Satya Nadella visited the office at 456 Tech Boulevard.
+
+Entities found:
+
+MicrosoftCorporation: company
+SatyaNadella: name
+4456TechBoulevard: street_address
+
+C. Input: Sarah Johnson works at Deutsche Bank in Frankfurt.
+
+Entities found:
+
+SarahJohnson: name
+DeutscheBank: company
+
+===
+
+TRAIN PROCESS:
+
+C:\Users\elnat\miniconda3\envs\pythonProject\python.exe C:\Users\elnat\py\NER\pythonProject\NER4.py
 Loading Gretel's synthetic PII finance dataset...
 Total English training examples found: 25948
 Total English test examples found: 2962
