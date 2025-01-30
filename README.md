@@ -9,28 +9,47 @@ Project structure:
 finance_ner_project/
 
 ├── data_fetch/
+
 │   ├── fetch_tabular.py
+
 │   ├── fetch_news.py
 
+
 ├── data_storage/
+
 │   ├── store_tabular.py
+
 │   ├── store_news.py
 
+
 ├── ner/
+
 │   ├── ner.py
+
 │   ├── ner_model
+
 │   ├── requirements.txt
+
 │   ├── pip_requirements.txt
+
 │   ├── README.md
 
+
 ├── rag_system/
+
 │   ├── rag_agent.py
 
+
 ├── ui/
+
 │   ├── app.py
+
 ├── requirements.txt
+
 ├── pip_requirements.txt
+
 └── README.md
+
 
 Stage 1: Fetch Data
 1.1 Tabular Data
